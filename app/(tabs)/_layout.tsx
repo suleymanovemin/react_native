@@ -5,7 +5,15 @@ import { Tabs } from "expo-router";
 import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 import { useEffect, useState } from "react";
 import { Image, ImageBackground, Platform, Text, View } from "react-native";
-function TabIcon({ focused, icon, title }: any) {
+function TabIcon({
+  focused,
+  icon,
+  title,
+}: {
+  focused: boolean;
+  icon: any;
+  title: string;
+}) {
   if (focused) {
     return (
       <ImageBackground
