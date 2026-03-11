@@ -1,3 +1,4 @@
+import { useFavorites } from "@/context/FavoritesContext";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   ActivityIndicator,
@@ -31,10 +32,13 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 const Details = () => {
   const router = useRouter();
   const { id } = useLocalSearchParams();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const { data: movie, loading } = useFetch(() =>
     fetchMovieDetails(id as string),
   );
+
+  const favorited = movie ? isFavorite(movie.id) : false;
 
   if (loading)
     return (
@@ -54,6 +58,18 @@ const Details = () => {
             className="w-full h-[550px]"
             resizeMode="stretch"
           />
+
+          <TouchableOpacity
+            className="absolute bottom-5 left-5 rounded-full size-14 flex items-center justify-center"
+            style={{ backgroundColor: favorited ? "#AB8BFF" : "#fff" }}
+            onPress={() => movie && toggleFavorite(movie)}
+          >
+            <Image
+              source={icons.save}
+              className="w-6 h-6"
+              tintColor={favorited ? "#fff" : "#030014"}
+            />
+          </TouchableOpacity>
 
           <TouchableOpacity className="absolute bottom-5 right-5 rounded-full size-14 bg-white flex items-center justify-center">
             <Image

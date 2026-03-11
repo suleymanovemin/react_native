@@ -47,7 +47,7 @@ export default function TabsLayout() {
   const renderTabs = () => {
     if (deviceType === "ios" && parseFloat(deviceVersion) >= 16) {
       return (
-        <NativeTabs>
+        <NativeTabs >
           <NativeTabs.Trigger name="index" hidden={false}>
             <Label>Home</Label>
             <Icon sf="house.fill" drawable="custom_android_drawable" />

@@ -1,11 +1,14 @@
 import { Stack } from "expo-router";
 import "./global.css";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="movies/[id]" options={{ headerShown: false }} />
-    </Stack>
+    <FavoritesProvider>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="movies/[id]" options={{ headerShown: false }} />
+      </Stack>
+    </FavoritesProvider>
   );
 }
